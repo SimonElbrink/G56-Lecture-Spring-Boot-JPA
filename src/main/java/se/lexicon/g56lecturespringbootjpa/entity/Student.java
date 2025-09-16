@@ -17,16 +17,20 @@ public class Student {
     @Id
     @GeneratedValue
     @UuidGenerator
+    @Column(nullable = false, updatable = false)
     private String id;
 
     @Setter
+    @Column(nullable = false, length = 100)
     private String firstName;
 
     @Setter
+    @Column(nullable = false, length = 100)
     private String lastName;
 
     @Setter
     @ToString.Exclude
+    @Column(nullable = false, length = 120, unique = true)
     private String email;
 
     private boolean status;
