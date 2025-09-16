@@ -1,16 +1,22 @@
-package se.lexicon.g56lecturespringbootjpa.model;
+package se.lexicon.g56lecturespringbootjpa.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-
+@Entity
 @Getter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class Student {
 
+    @Id
+    @GeneratedValue
+    @UuidGenerator
     private String id;
 
     @Setter
@@ -34,7 +40,10 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
 
+    @PrePersist
+    private void onCreate(){
         this.status = true;
         this.createdDate = LocalDateTime.now();
     }
