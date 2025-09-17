@@ -37,7 +37,10 @@ public class Student {
     private LocalDateTime createdDate;
 
 
-    //TODO: Relationship
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    @Setter
+    private Address address;
 
 
     public Student(String firstName, String lastName, String email) {
