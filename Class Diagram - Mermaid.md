@@ -30,6 +30,8 @@ classDiagram
         - String name
     }
     
-    Student "1" <--> "1" Address
+    Student "1" <--> "1" Address: OneToOne
+    Course "1" --> "0.*" Instructor : ManyToOne
+    
 
 ````
