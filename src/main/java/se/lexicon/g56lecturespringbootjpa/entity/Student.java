@@ -5,7 +5,9 @@ import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -41,6 +43,15 @@ public class Student {
     @Setter
     private Address address;
 
+    @ManyToMany
+    @JoinTable( // OneToMany x2
+            name = "students_courses", //name of the join Table
+            joinColumns = @JoinColumn(name= "student_id"), // Owning Side
+            inverseJoinColumns = @JoinColumn(name ="course_id") // Target Entity
+    )
+    private Set<Course> courses = new HashSet<>();
+
+
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -52,6 +63,7 @@ public class Student {
     private void onCreate(){
         this.status = true;
         this.createdDate = LocalDateTime.now();
+
     }
 
     @Override
@@ -66,4 +78,13 @@ public class Student {
     }
 
 
+    //Convenience method
+    public void enrollCourse(Course course) {
+        this.courses.add(course);
+    }
+
+    //Convenience method
+    public void dropCourse(Course course) {
+        this.courses.remove(course);
+    }
 }

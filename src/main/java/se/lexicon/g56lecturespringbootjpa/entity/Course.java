@@ -3,6 +3,9 @@ package se.lexicon.g56lecturespringbootjpa.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 
 @Getter
@@ -20,8 +23,11 @@ public class Course {
     private String CourseName;
 
     @NonNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
+
+//    @ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST)
+//    private Set<Student> students = new HashSet<>();
 
 }

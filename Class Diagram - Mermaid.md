@@ -8,6 +8,7 @@ classDiagram
         - boolean status
         - LocalDateTime createDate
         - Address address
+        - Set~courses~ courses
     }
     
     class Address{
@@ -32,6 +33,7 @@ classDiagram
     
     Student "1" <--> "1" Address: OneToOne
     Course "1" --> "0.*" Instructor : ManyToOne
+    Student "0..*" --> "0..*" Course : ManyToMany
     
 
 ````
