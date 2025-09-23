@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -38,6 +40,14 @@ public class Student {
     private boolean status;
     private LocalDateTime createdDate;
 
+    @Getter
+    @Transient
+    private LocalDate date;
+    @Getter
+    @Transient
+    private LocalTime time;
+
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
     @Setter
@@ -63,6 +73,8 @@ public class Student {
     private void onCreate(){
         this.status = true;
         this.createdDate = LocalDateTime.now();
+        this.date = createdDate.toLocalDate();
+        this.time = createdDate.toLocalTime();
 
     }
 
