@@ -1,9 +1,6 @@
 package se.lexicon.g56lecturespringbootjpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -28,5 +25,8 @@ public class Address {
     private String postalCode;
     @NonNull
     private String country;
+
+    @OneToOne(mappedBy = "address")
+    private Student student;
 
 }

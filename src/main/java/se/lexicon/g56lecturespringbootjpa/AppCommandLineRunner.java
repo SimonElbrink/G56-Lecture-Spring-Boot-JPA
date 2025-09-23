@@ -25,8 +25,6 @@ public class AppCommandLineRunner implements CommandLineRunner {
 
         Address address = new Address("123 Main St", "Springfield", "12345", "US");
 
-        addressRepository.save(address);
-
         Student student = new Student("John", "Doe", "joe@doe.com");
         student.setAddress(address);
 
