@@ -49,7 +49,7 @@ public class Student {
 
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "address_id", unique = true)
     @Setter
     private Address address;
 
