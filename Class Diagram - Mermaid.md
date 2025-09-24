@@ -30,10 +30,10 @@ classDiagram
         - Long id
         - String name
     }
-    
-    Student "1" <--> "1" Address: OneToOne
-    Course "1" --> "0.*" Instructor : ManyToOne
-    Student "0..*" --> "0..*" Course : ManyToMany
+%% Relationships
+    Student "1" <--> "1" Address
+    Course "1" -->  Instructor
+    Student "0..*" --> Course
     
 
 ````
